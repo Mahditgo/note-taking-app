@@ -1,12 +1,18 @@
 import { Request, Response } from "express";
 import * as noteService from './../services/noteService';
 import { asyncHandler } from "../utils/asyncHandler";
+import { createNoteSchema, updateNoteSchema } from "../validation/noteSchema";
 
 
 //create note
 export const createNote = asyncHandler(async (req: Request, res: Response) => {
-  const note = await noteService.createNote(req.body);
-  res.status(201).json(note);
+  const parsed = createNoteSchema.safeParse(req.body);
+  if (!parsed.success) {
+    return res.status(400).json({ errors: parsed.error.format() });
+  }
+
+  const user = await noteService.createNote(parsed.data);
+  res.status(201).json(user);
 });
 
 //get all notes
@@ -23,8 +29,13 @@ export const getNote = asyncHandler(async (req: Request, res: Response) => {
 
 //update note
 export const updateUser = asyncHandler(async (req: Request, res: Response) => {
-  const updatedNote = await noteService.updateNote(Number(req.params.id), req.body);
-  res.json(updatedNote);
+  const parsed = updateNoteSchema.safeParse(req.body);
+  if (!parsed.success) {
+    return res.status(400).json({ errors: parsed.error.format() });
+  }
+
+  const user = await noteService.updateNote(Number(req.params.id), parsed.data);
+  res.json(user);
 });
 
 //delet note

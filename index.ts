@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import sequelize from "./src/config/database";
 
 import noteRoutes from "./src/routers/noteRouters";
+import errorHandler from "./src/middlewares/errorHandler";
 
 dotenv.config();
 
@@ -13,7 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 
-app.use("/notes", noteRoutes)
+app.use("/notes", noteRoutes);
+app.use(errorHandler)
 
 
 const PORT = process.env.PORT || 3000;
