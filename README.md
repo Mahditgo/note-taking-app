@@ -16,3 +16,19 @@ A minimal and cleanly structured note-taking app built with **TypeScript**, **Ex
 
 ## 📂 Project Structure
 
+## 📌 Tech Stack
+
+Node.js
+
+Express
+
+TypeScript
+
+Sequelize
+
+PostgreSQL
+
+
+
+
+
