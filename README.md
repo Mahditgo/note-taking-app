@@ -28,6 +28,21 @@ Sequelize
 PostgreSQL
 
 
+## Install dependencies
+
+npm install
 
 
+## Configure environment
 
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=your_db_name
+DB_USER=your_user
+DB_PASSWORD=your_password
+PORT=3000
+
+
+## Run the app
+
+npm run dev
