@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 
-app.use("/api/note", noteRoutes)
+app.use("/notes", noteRoutes)
 
 
 const PORT = process.env.PORT || 3000;
